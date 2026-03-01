@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ONNX models
+*.onnx
+
+# Testing output videos and images
+*.mp4
+*.avi
+*_flow_raw/
+*_flow_raw_test/
+
+# Generated padding output models
+output_padding/
+
+# Virtual environments
+venv/
+env/
+.env
+.venv
+ENV/
+env.bak/
+venv.bak/
+
+# IDE and Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Checkpoint temporary files
+*.ckpt.meta
+*.ckpt.index
+*.ckpt.data*
+checkpoint
