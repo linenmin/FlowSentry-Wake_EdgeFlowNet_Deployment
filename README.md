@@ -12,13 +12,14 @@
 **[English](#english) | [中文](#chinese)**
 
 Deploying EdgeFlowNet to Orange Pi 5 Plus + Axelera Metis M.2 NPU via Voyager SDK.
-<br>将 EdgeFlowNet 部署至 Orange Pi 5 Plus 搭载 Axelera Metis M.2 异构计算平台。
+`<br>`将 EdgeFlowNet 部署至 Orange Pi 5 Plus 搭载 Axelera Metis M.2 异构计算平台。
 
 </div>
 
 ---
 
-<a id="english"></a>
+`<a id="english"></a>`
+
 ## 🇬🇧 English
 
 ### 📌 Introduction
@@ -76,6 +77,7 @@ python run_inference_pipeline.py \
 ```
 
 This script will:
+
 1. Export `"edgeflownet_576_1024.onnx"`.
 2. Patch it and save it to `output_padding/edgeflownet_576_1024.onnx`.
 3. Run standard ONNXRuntime inference on the video and generate `your_video_flow_vis_test.mp4`.
@@ -85,18 +87,22 @@ This script will:
 Once you have verified the patched model (`output_padding/edgeflownet_576_1024.onnx`) on your host, follow these steps to deploy:
 
 1. **Transfer the Model**: Copy the patched ONNX model to your Orange Pi running the **Axelera Voyager SDK**. Place it in the required directory for the `FlowSentry-Wake` repo (e.g., `~/FlowSentry-Wake/ax_models/custom/`).
-2. **Compile and Run**: On the Orange Pi, navigate to the `FlowSentry-Wake` workspace and execute the deployment script.
+2. **Prepare Calibration Data**: Before running the deployment script, you must prepare the calibration dataset (required for model quantization and optimization). Refer to the utility script in the companion repo:
+   👉 **[prepare_calib_data.py](https://github.com/mm0806son/FlowSentry-Wake/blob/main/prepare_calib_data.py)**
+3. **Compile and Run**: On the Orange Pi, navigate to the `FlowSentry-Wake` workspace and execute the deployment script.
 
 ```bash
 # Executed ON the Orange Pi
 ./deploy.py edgeflownet-opticalflow
 ```
+
 This triggers the Axios compiler to slice the graph and compile `.hef` binaries for the Metis NPU.
 
 ### 📜 Acknowledgements & License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 We sincerely thank the following open-source projects:
+
 * **EdgeFlowNet**: [https://github.com/pearwpi/EdgeFlowNet](https://github.com/pearwpi/EdgeFlowNet)
 * **Axelera Official Voyager SDK (v1.5)**: [https://github.com/axelera-ai-hub/voyager-sdk/tree/release/v1.5](https://github.com/axelera-ai-hub/voyager-sdk/tree/release/v1.5)
 
@@ -104,7 +110,8 @@ We sincerely thank the following open-source projects:
 
 <br>
 
-<a id="chinese"></a>
+`<a id="chinese"></a>`
+
 ## 🇨🇳 中文
 
 ### 📌 引言
@@ -162,6 +169,7 @@ python run_inference_pipeline.py \
 ```
 
 该脚本将自动执行以下操作：
+
 1. 导出原始的 `"edgeflownet_576_1024.onnx"` 模型。
 2. 对齐模型进行修补处理，生成存放于 `output_padding/edgeflownet_576_1024.onnx` 的适用目标编译器的版本。
 3. 调用主机 `onnxruntime` 对输入的视频执行完整光流计算，并输出渲染视频 `your_video_flow_vis_test.mp4` 用于检视精度。
@@ -171,17 +179,21 @@ python run_inference_pipeline.py \
 在上位机确认 `output_padding/` 下修补后的 ONNX 模型精度无误后，即可进入边缘硬件部署流程：
 
 1. **模型传输**：将修补后的 `.onnx` 模型上传到装有 **Axelera Voyager SDK** 的 Orange Pi 上，放入配套仓库 `FlowSentry-Wake` 中要求的目录（例如 `~/FlowSentry-Wake/ax_models/custom/`）。
-2. **编译与运行**：登录 Orange Pi，进入 `FlowSentry-Wake` 工作区，使用官方部署工具打包。
+2. **准备量化校准数据**：在运行部署脚本之前，您必须准备好用于模型量化与优化的校准数据集。请参考配套仓库中的准备脚本：
+   👉 **[prepare_calib_data.py](https://github.com/mm0806son/FlowSentry-Wake/blob/main/prepare_calib_data.py)**
+3. **编译与运行**：登录 Orange Pi，进入 `FlowSentry-Wake` 工作区，使用官方部署工具打包。
 
 ```bash
 # 于 Orange Pi 终端内执行
 ./deploy.py edgeflownet-opticalflow
 ```
+
 此命令将触发底层 Axios 编译器进行算子分割、降标与重构，最终将模型编入 Metis NPU 专用 `.hef` 可执行镜像并启动应用。
 
 ### 📜 版权、许可证与致谢
 
 本项目遵循 MIT 开源许可证。详见 `LICENSE` 文件声明。
 诚挚感谢以下两项优秀的开源系统为本级部署方案提供的底层支持：
+
 * 原版 **EdgeFlowNet** 算法：[https://github.com/pearwpi/EdgeFlowNet](https://github.com/pearwpi/EdgeFlowNet)
 * **Axelera 原生 Voyager SDK (v1.5)**：[https://github.com/axelera-ai-hub/voyager-sdk/tree/release/v1.5](https://github.com/axelera-ai-hub/voyager-sdk/tree/release/v1.5)
