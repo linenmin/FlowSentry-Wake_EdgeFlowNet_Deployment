@@ -71,18 +71,18 @@ Instead of running steps individually, you can validate the full export-and-test
 ```bash
 python run_inference_pipeline.py \
     --video "path/to/your/own_video.mp4" \
-    --height 384 \
-    --width 512
+    --height 576 \
+    --width 1024
 ```
 
 This script will:
-1. Export `"edgeflownet_384_512.onnx"`.
-2. Patch it and save it to `output_padding/edgeflownet_384_512.onnx`.
+1. Export `"edgeflownet_576_1024.onnx"`.
+2. Patch it and save it to `output_padding/edgeflownet_576_1024.onnx`.
 3. Run standard ONNXRuntime inference on the video and generate `your_video_flow_vis_test.mp4`.
 
 ### 🚀 Edge Deployment (Orange Pi + Axelera)
 
-Once you have verified the patched model (`output_padding/edgeflownet_384_512.onnx`) on your host, follow these steps to deploy:
+Once you have verified the patched model (`output_padding/edgeflownet_576_1024.onnx`) on your host, follow these steps to deploy:
 
 1. **Transfer the Model**: Copy the patched ONNX model to your Orange Pi running the **Axelera Voyager SDK**. Place it in the required directory for the `FlowSentry-Wake` repo (e.g., `~/FlowSentry-Wake/ax_models/custom/`).
 2. **Compile and Run**: On the Orange Pi, navigate to the `FlowSentry-Wake` workspace and execute the deployment script.
@@ -157,13 +157,13 @@ pip install -r requirements.txt
 ```bash
 python run_inference_pipeline.py \
     --video "path/to/your/own_video.mp4" \
-    --height 384 \
-    --width 512
+    --height 576 \
+    --width 1024
 ```
 
 该脚本将自动执行以下操作：
-1. 导出原始的 `"edgeflownet_384_512.onnx"` 模型。
-2. 对齐模型进行修补处理，生成存放于 `output_padding/edgeflownet_384_512.onnx` 的适用目标编译器的版本。
+1. 导出原始的 `"edgeflownet_576_1024.onnx"` 模型。
+2. 对齐模型进行修补处理，生成存放于 `output_padding/edgeflownet_576_1024.onnx` 的适用目标编译器的版本。
 3. 调用主机 `onnxruntime` 对输入的视频执行完整光流计算，并输出渲染视频 `your_video_flow_vis_test.mp4` 用于检视精度。
 
 ### 🚀 边缘部署流程 (Orange Pi + Axelera)

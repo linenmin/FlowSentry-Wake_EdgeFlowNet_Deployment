@@ -85,8 +85,8 @@ def patch_convtranspose(model):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('input', help='input onnx path', default='./edgeflownet_384_512.onnx')
-    parser.add_argument('output', help='output onnx path', default='./output_padding/edgeflownet_384_512.onnx')
+    parser.add_argument('input', help='input onnx path', default='./edgeflownet_576_1024.onnx')
+    parser.add_argument('output', help='output onnx path', default='./output_padding/edgeflownet_576_1024.onnx')
     args = parser.parse_args()
     model = onnx.load(args.input)
     changed = patch_convtranspose(model)
