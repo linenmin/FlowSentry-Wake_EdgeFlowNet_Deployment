@@ -60,8 +60,8 @@ Clone the repository and create a dedicated `conda` environment on your host mac
 git clone https://github.com/linenmin/FlowSentry-Wake_EdgeFlowNet_Deployment
 cd FlowSentry-Wake_EdgeFlowNet_Deployment
 
-conda create -n vela python=3.10 -y
-conda activate vela
+conda create -n flowsentry_edgeflownet python=3.10 -y
+conda activate flowsentry_edgeflownet
 pip install -r requirements.txt
 ```
 
@@ -152,8 +152,8 @@ FlowSentry-Wake_EdgeFlowNet_Deployment/
 git clone https://github.com/linenmin/FlowSentry-Wake_EdgeFlowNet_Deployment
 cd FlowSentry-Wake_EdgeFlowNet_Deployment
 
-conda create -n vela python=3.10 -y
-conda activate vela
+conda create -n flowsentry_edgeflownet python=3.10 -y
+conda activate flowsentry_edgeflownet
 pip install -r requirements.txt
 ```
 
